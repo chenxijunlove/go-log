@@ -11,6 +11,7 @@ type Options struct {
 	Stacktrace  string //记录堆栈的级别
 	IsStdOut    string //是否标准输出console输出
 	ProjectName string //项目名称
+	FileAsync   string
 }
 
 func WithLogPath(logpath string) Option {
@@ -58,5 +59,10 @@ func WithIsStdOut(isstdout string) Option {
 func WithProjectName(projectname string) Option {
 	return func(o *Options) {
 		o.ProjectName = projectname
+	}
+}
+func WithFileAsync(fileAsync string) Option {
+	return func(o *Options) {
+		o.FileAsync = fileAsync
 	}
 }
