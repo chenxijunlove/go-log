@@ -2,10 +2,10 @@ package log
 
 import (
 	"context"
-	"github.com/xiaomeng79/go-log/conf"
-	"github.com/xiaomeng79/go-log/plugins/logrus"
-	"github.com/xiaomeng79/go-log/plugins/zaplog"
-	"github.com/xiaomeng79/go-log/tracer"
+	"github.com/chenxijunlove/go-log/conf"
+	"github.com/chenxijunlove/go-log/plugins/logrus"
+	"github.com/chenxijunlove/go-log/plugins/zaplog"
+	"github.com/chenxijunlove/go-log/tracer"
 	"testing"
 	"time"
 )

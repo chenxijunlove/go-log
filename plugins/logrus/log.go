@@ -4,8 +4,8 @@ import (
 	"bufio"
 	"github.com/rifflock/lfshook"
 	"github.com/sirupsen/logrus"
-	"github.com/xiaomeng79/go-log/conf"
-	"github.com/xiaomeng79/go-log/fileout"
+	"github.com/chenxijunlove/go-log/conf"
+	"github.com/chenxijunlove/go-log/fileout"
 	"os"
 )
 
