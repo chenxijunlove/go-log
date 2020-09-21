@@ -75,5 +75,6 @@ const (
 	Stacktrace  string = "error"    //记录堆栈的级别
 	IsStdOut    string = "yes"      //是否标准输出console输出
 	ProjectName string = "test"     //项目名称
+	FileAsync   string = "no"
 
 )

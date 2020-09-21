@@ -5,7 +5,9 @@ import (
 	"github.com/chenxijunlove/go-log/fileout"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+	"gopkg.in/natefinch/lumberjack.v2"
 	"os"
+	"path/filepath"
 	"strings"
 )
 
@@ -45,11 +47,23 @@ func New(opts ...conf.Option) *Log {
 		Stacktrace:  conf.Stacktrace,
 		IsStdOut:    conf.IsStdOut,
 		ProjectName: conf.ProjectName,
+		FileAsync:   conf.FileAsync,
 	}
 	for _, opt := range opts {
 		opt(o)
 	}
-	writers := []zapcore.WriteSyncer{fileout.NewRollingFile(o.LogPath, o.LogName, o.MaxSize, o.MaxAge)}
+	writers := make([]zapcore.WriteSyncer, 0)
+	if o.FileAsync == "yes" {
+		writers = append(writers, fileout.NewRollingFile(o.LogPath, o.LogName, o.MaxSize, o.MaxAge))
+	} else {
+		writers = append(writers, zapcore.AddSync(&lumberjack.Logger{
+			Filename:  filepath.Join(o.LogPath, o.LogName+".log"),
+			MaxSize:   o.MaxSize, //megabytes
+			MaxAge:    o.MaxAge,  //days
+			LocalTime: true,
+			Compress:  false,
+		}))
+	}
 	if o.IsStdOut == "yes" {
 		writers = append(writers, os.Stdout)
 	}
